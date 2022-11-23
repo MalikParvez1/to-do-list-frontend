@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "engines": {
-    "node": "18.x",
-    "npm": "8.x"
+    "node": ">= 16.16.0",
+    "npm": ">= 8.19.3"
   },
   "scripts": {
     "start": "vue-cli-service serve",
