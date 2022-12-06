@@ -26,7 +26,7 @@
                   <label for="formDate"></label>
                     <Datepicker v-model="date" class="form-control" id="minimumView" ></Datepicker>
                 </div>
-                    <button type="submit" class="btn btn-secondary" @click.prevent="createToDo">erstellen</button>
+                    <button type="submit" class="btn btn-success" @click.prevent="createToDo">erstellen</button>
               </div>
             </div>
           </div>
@@ -52,12 +52,16 @@
                 </thead>
                 <tbody>
                 <tr v-for="toDo in toDos" :key="toDo.id">
-                  <td> <div class="form-check">
+                  <td> <div class="form-checkjustify">
                     <input class="form-check-input me-0" type="checkbox" value="" id="flexCheckChecked3"/>
                   </div></td>
                   <td>{{toDo.todoTitel}}</td>
                   <td>{{toDo.beschreibung}}</td>
                   <td>{{new Date(toDo.faelligkeitsdatum).toDateString()}}</td>
+                  <td>
+                    <button type="submit" class="btn btn-outline-primary btn-sm" @click.prevent="">umbenennen</button>
+                    <button type="submit" class="btn btn-outline-danger btn-sm" @click.prevent="deleteToDo">löschen</button>
+                  </td>
                 </tr>
                 </tbody>
               </table>
@@ -82,21 +86,22 @@ export default {
     }
   },
   mounted () {
+    const endpoint = process.env.VUE_APP_BACKEND_BASE_URL
     const requestOptions = {
       method: 'GET',
       redirect: 'follow'
     }
 
-    fetch('http://localhost:8080/api/v1/todolist', requestOptions)
+    fetch(endpoint + '/api/v1/todolist', requestOptions)
       .then(response => response.json())
       .then(result => result.forEach(toDo => {
         this.toDos.push(toDo)
       }))
       .catch(error => console.log('error', error))
-    console.log('http://localhost:8080/api/v1/todolist')
   },
   methods: {
     createToDo () {
+      const endpoint = process.env.VUE_APP_BACKEND_BASE_URL
       const myHeaders = new Headers()
       myHeaders.append('Content-Type', 'application/json')
       // eslint-disable-next-line no-undef
@@ -117,9 +122,30 @@ export default {
         redirect: 'follow'
       }
 
-      fetch('http://localhost:8080/api/v1/todolist', requestOptions)
+      fetch(endpoint + '/api/v1/todolist', requestOptions)
         .then(response => response.text())
-        .then(result => console.log(result))
+        .then(async result => {
+          console.log(result)
+          document.location.reload()
+        })
+        .catch(error => console.log('error', error))
+    },
+    deleteToDo () {
+      const endpoint = process.env.VUE_APP_BACKEND_BASE_URL
+      const raw = ''
+
+      const requestOptions = {
+        method: 'DELETE',
+        body: raw,
+        redirect: 'follow'
+      }
+
+      fetch(endpoint + '/api/v1/todolist/14', requestOptions)
+        .then(response => response.text())
+        .then(async result => {
+          console.log(result)
+          document.location.reload()
+        })
         .catch(error => console.log('error', error))
     }
   }
