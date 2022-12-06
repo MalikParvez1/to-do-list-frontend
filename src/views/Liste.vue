@@ -26,7 +26,7 @@
                   <label for="formDate"></label>
                     <Datepicker v-model="date" class="form-control" id="minimumView" ></Datepicker>
                 </div>
-                    <button type="submit" class="btn btn-success" @click.prevent="createToDo">erstellen</button>
+                    <button type="submit" class="btn btn-success" v-on:click="createToDo">erstellen</button>
               </div>
             </div>
           </div>
@@ -59,8 +59,8 @@
                   <td>{{toDo.beschreibung}}</td>
                   <td>{{new Date(toDo.faelligkeitsdatum).toDateString()}}</td>
                   <td>
-                    <button type="submit" class="btn btn-outline-primary btn-sm" @click.prevent="">umbenennen</button>
-                    <button type="submit" class="btn btn-outline-danger btn-sm" @click.prevent="deleteToDo">löschen</button>
+                    <button type="submit" class="btn btn-outline-primary btn-sm" >umbenennen</button>
+                    <button type="submit" class="btn btn-outline-danger btn-sm" v-on:click="deleteToDo (toDo.id)">löschen</button>
                   </td>
                 </tr>
                 </tbody>
@@ -110,6 +110,7 @@ export default {
 
       const raw = JSON.stringify({
 
+        id: this.id,
         todoTitel: this.title,
         beschreibung: this.description,
         faelligkeitsdatum: dateType
@@ -130,7 +131,7 @@ export default {
         })
         .catch(error => console.log('error', error))
     },
-    deleteToDo () {
+    deleteToDo (id) {
       const endpoint = process.env.VUE_APP_BACKEND_BASE_URL
       const raw = ''
 
@@ -140,7 +141,7 @@ export default {
         redirect: 'follow'
       }
 
-      fetch(endpoint + '/api/v1/todolist/14', requestOptions)
+      fetch(endpoint + '/api/v1/todolist/' + id, requestOptions)
         .then(response => response.text())
         .then(async result => {
           console.log(result)
