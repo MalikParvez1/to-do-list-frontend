@@ -59,7 +59,7 @@
                   <td>{{toDo.beschreibung}}</td>
                   <td>{{new Date(toDo.faelligkeitsdatum).toDateString()}}</td>
                   <td>
-                    <button type="submit" class="btn btn-outline-primary btn-sm" >umbenennen</button>
+                    <button type="submit" class="btn btn-outline-primary btn-sm" v-on:click="updateToDo (toDo.id)" >umbenennen</button>
                     <button type="submit" class="btn btn-outline-danger btn-sm" v-on:click="deleteToDo (toDo.id)">löschen</button>
                   </td>
                 </tr>
@@ -81,18 +81,19 @@ export default {
     return {
       title: '',
       description: '',
+      status: false,
       date: null,
       toDos: []
     }
   },
   mounted () {
-    const endpoint = process.env.VUE_APP_BACKEND_BASE_URL
+    const endpoint = process.env.VUE_APP_BACKEND_BASE_URL + '/api/v1/todolist'
     const requestOptions = {
       method: 'GET',
       redirect: 'follow'
     }
 
-    fetch(endpoint + '/api/v1/todolist', requestOptions)
+    fetch(endpoint, requestOptions)
       .then(response => response.json())
       .then(result => result.forEach(toDo => {
         this.toDos.push(toDo)
@@ -101,7 +102,7 @@ export default {
   },
   methods: {
     createToDo () {
-      const endpoint = process.env.VUE_APP_BACKEND_BASE_URL
+      const endpoint = process.env.VUE_APP_BACKEND_BASE_URL + '/api/v1/todolist'
       const myHeaders = new Headers()
       myHeaders.append('Content-Type', 'application/json')
       // eslint-disable-next-line no-undef
@@ -110,9 +111,9 @@ export default {
 
       const raw = JSON.stringify({
 
-        id: this.id,
         todoTitel: this.title,
         beschreibung: this.description,
+        status: this.status,
         faelligkeitsdatum: dateType
       })
 
@@ -123,12 +124,39 @@ export default {
         redirect: 'follow'
       }
 
-      fetch(endpoint + '/api/v1/todolist', requestOptions)
+      fetch(endpoint, requestOptions)
         .then(response => response.text())
         .then(async result => {
           console.log(result)
           document.location.reload()
         })
+        .catch(error => console.log('error', error))
+    },
+    updateToDo (id) {
+      const endpoint = process.env.VUE_APP_BACKEND_BASE_URL
+      const myHeaders = new Headers()
+      myHeaders.append('Content-Type', 'application/json')
+      // eslint-disable-next-line no-undef
+      const date = ref(new Date()).value
+      const dateType = new Date(date.getFullYear() + '-' + date.getMonth() + '-' + date.getDay())
+
+      const raw = JSON.stringify({
+
+        todoTitel: this.title,
+        beschreibung: this.description,
+        faelligkeitsdatum: dateType
+      })
+
+      const requestOptions = {
+        method: 'PUT',
+        headers: myHeaders,
+        body: raw,
+        redirect: 'follow'
+      }
+
+      fetch(endpoint + '/api/v1/todolist/' + id, requestOptions)
+        .then(response => response.text())
+        .then(result => console.log(result))
         .catch(error => console.log('error', error))
     },
     deleteToDo (id) {
