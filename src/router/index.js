@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import List from '@/views/Liste'
+import ListeErstellen from '@/views/ListeErstellen'
+import ListeView from '@/views/ListeView'
 
 const routes = [
   {
@@ -9,9 +10,14 @@ const routes = [
     component: HomeView
   },
   {
-    path: '/listen',
-    name: 'listen',
-    component: List
+    path: '/listeErstellen',
+    name: 'listeErstellen',
+    component: ListeErstellen
+  },
+  {
+    path: '/listeView',
+    name: 'listeView',
+    component: ListeView
   },
   {
     path: '/about',

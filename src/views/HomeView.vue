@@ -1,4 +1,5 @@
 <template>
+  <section class="vh-100">
     <div class="p-3 mb-2 bg-dark text-light">
       <div class="home m-5"  style="background-color: #212529">
         <img alt="Vue logo" src="../assets/todo.png">
@@ -10,8 +11,8 @@
         <p class="text-center">Hallo, mit dieser Webseite kannst du deine To-Dos auflisten und sie nach Fälligkeit prüfen. Wenn du sie erledigt hast kannst du es abhacken.</p>
       </div>
       <div class="d-grid gap-3 col-6 mx-auto m-5">
-        <button type="button" class="btn btn-info">neue To-Dos anlegen</button>
-        <button type="button" class="btn btn-info">bereits vorhandene</button>
+        <a href="ListeErstellen" class="btn btn-info" role="button">Neue To-Dos anlegen</a>
+        <a href="ListeView" class="btn btn-info" role="button">Bereits vorhandene To-Dos</a>
       </div>
       <div class="h-100 d-flex justify-content-center">
         <p class="text-start col-sm-3">1. Sammle To-Dos!
@@ -22,6 +23,7 @@
           Um dich selbst zu motivieren, kannst du die erledigten To-Dos abhaken.</p>
       </div>
     </div>
+  </section>
 </template>
 
 <script>

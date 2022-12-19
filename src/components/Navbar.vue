@@ -9,7 +9,9 @@
   <div class="collapse" id="navbarToggleExternalContent">
     <div class="bg-dark p-4">
       <h6><router-link class="text-white" to="/">Home</router-link></h6>
-      <h6><router-link class="text-white" to="/Listen">Listen</router-link></h6>
+      <h6><router-link class="text-white" to="/listeErstellen">Liste erstellen</router-link></h6>
+      <h6><router-link class="text-white" to="/listeView">Liste</router-link></h6>
+<!--      <h6><router-link class="text-white" to="/listeBearbeiten">Liste bearbeiten</router-link></h6>-->
       <h6><router-link class="text-white" to="/about">About</router-link></h6>
     </div>
   </div>
