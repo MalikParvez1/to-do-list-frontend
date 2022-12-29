@@ -1,5 +1,4 @@
 <template>
-  <section class="vh-10">
     <div class="container py-5 h-100">
       <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col">
@@ -31,9 +30,8 @@
           </div>
         </div>
       </div>
-  </section>
-  <div class="d-flex justify-content-center">
-    <p class="text-start col-9 text-white">Hinweis: Um ein task zu ändern müssen die Felder zum erstellen der Tasks nochmal ausgefüllt werden und anschließend auf den "ändern" Button vom jeweiligen Task geklickt werden.</p>
+  <div class="col-md-8 offset-md-2">
+    <p class="text-white">Hinweis: Um ein task zu ändern müssen die Felder zum erstellen der Tasks nochmal ausgefüllt werden und anschließend auf den "ändern" Button vom jeweiligen Task geklickt werden.</p>
   </div>
   <section class="vh-100">
     <div class="container py-5 h-30">
@@ -41,7 +39,8 @@
         <div class="col">
           <div class="card" id="list1" style="border-radius: .75rem; background-color: #eff1f2;">
             <div class="card-body py-4 px-4 px-md-5">
-              <div class=""><th scope="col">Todos insgesamt: {{toDos.length}}</th></div>
+              <div class=""><th scope="col">Todos insgesamt: {{toDos.length}}</th>
+              </div>
               <hr class="my-4">
               <table class="table mb-4">
                 <thead class="table-light">
@@ -55,7 +54,7 @@
                 </thead>
                 <tbody>
                 <tr v-for="toDo in toDos" :key="toDo.id">
-                  <td> <input class="form-check-input" type="checkbox" v-model="toDo.status"></td>
+                  <td><input class="form-check-input" type="checkbox" v-model="toDo.status" v-on:click="isDone (toDo.id)"></td>
                   <td>{{toDo.todoTitel}}</td>
                   <td>{{toDo.beschreibung}}</td>
                   <td>{{new Date(toDo.datum).toLocaleDateString()}}</td>
@@ -77,7 +76,7 @@
 // import { ref } from 'vue'
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
-  name: 'ToDos',
+  name: 'ListeErstellen',
   data () {
     return {
       id: '',
@@ -180,6 +179,31 @@ export default {
           document.location.reload()
         })
         .catch(error => console.log('error', error))
+    },
+    // TODO Status ändern
+    isDone (id) {
+      const endpoint = process.env.VUE_APP_BACKEND_BASE_URL
+      const myHeaders = new Headers()
+      myHeaders.append('Content-Type', 'application/json')
+
+      const raw = JSON.stringify({
+        todoStatus: this.status = !this.status
+      })
+
+      const requestOptions = {
+        method: 'PUT',
+        headers: myHeaders,
+        body: raw,
+        redirect: 'follow'
+      }
+
+      fetch(endpoint + '/api/v1/todolist/' + id, requestOptions)
+        .then(response => response.text())
+        .then(async result => {
+          console.log(result)
+          document.location.reload()
+        })
+        .catch(error => console.log('error', error))
     }
   }
 }
@@ -197,6 +221,9 @@ export default {
 }
 #list1 .select-input.form-control[readonly]:not([disabled]) {
   background-color: #fbfbfb;
+}
+.col-center{
+  margin: 0 auto;
 }
 
 </style>

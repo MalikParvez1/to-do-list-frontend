@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import ListeErstellen from '@/views/ListeErstellen'
 import ListeView from '@/views/ListeView'
+import Home from '../views/Home.vue'
 
 const routes = [
   {
@@ -18,6 +19,11 @@ const routes = [
     path: '/listeView',
     name: 'listeView',
     component: ListeView
+  },
+  {
+    path: '/',
+    name: 'helloworld',
+    component: Home
   },
   {
     path: '/about',

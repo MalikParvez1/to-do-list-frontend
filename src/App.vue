@@ -2,7 +2,6 @@
 
   <navbar></navbar>
   <router-view/>
-  <home></home>
 </template>
 
 <script>
