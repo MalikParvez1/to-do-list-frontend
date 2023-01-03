@@ -29,6 +29,9 @@
         </div>
       </div>
     </div>
+    <div class="d-grid gap-3 col-6 mx-auto m-5">
+      <a href="ListeErstellen" class="btn btn-info" role="button">Neue To-Dos anlegen</a>
+    </div>
   </section>
 </template>
 

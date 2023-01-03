@@ -57,7 +57,7 @@
                   <td>{{toDo.beschreibung}}</td>
                   <td>{{new Date(toDo.datum).toLocaleDateString()}}</td>
                   <td>
-                    <button type="submit" class="btn btn-outline-primary btn-sm" v-on:click="updateToDo (toDo.id)">ändern</button>
+                    <button type="submit" class="btn btn-outline-primary btn-sm" v-on:click="updateToDo (toDo.id)">bearbeiten</button>
                     <button type="submit" class="btn btn-outline-danger btn-sm" v-on:click="deleteToDo (toDo.id)">löschen</button>
                   </td>
                 </tr>
