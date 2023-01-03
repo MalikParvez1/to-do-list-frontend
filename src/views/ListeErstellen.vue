@@ -6,17 +6,15 @@
             <div class="card-body py-4 px-4 px-md-5">
 
               <p class="h1 text-center mt-3 mb-4 pb-3 text-primary">
-                <i class="fas fa-check-square me-1"></i>
                 <u>Todos</u>
               </p>
-
               <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">Aufgabentitel</label>
-                <input type="text" class="form-control" v-model="title">
+                <input type="text" class="form-control" v-model="title" required>
               </div>
               <div class="mb-3">
                 <label for="exampleFormControlTextarea1" class="form-label">Aufgabenbeschreibung</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" v-model="description" rows="3"></textarea>
+                <textarea class="form-control" id="exampleFormControlTextarea1" v-model="description" rows="3" required></textarea>
               </div>
 
               <div class="mb-3">
@@ -73,7 +71,7 @@
   </section>
 </template>
 <script>
-// import { ref } from 'vue'
+
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: 'ListeErstellen',
@@ -180,7 +178,6 @@ export default {
         })
         .catch(error => console.log('error', error))
     },
-    // TODO Status ändern
     isDone (id) {
       const endpoint = process.env.VUE_APP_BACKEND_BASE_URL
       const myHeaders = new Headers()
@@ -197,7 +194,7 @@ export default {
         redirect: 'follow'
       }
 
-      fetch(endpoint + '/api/v1/todolist/' + id, requestOptions)
+      fetch(endpoint + '/api/v1/todolist/' + id + '/status', requestOptions)
         .then(response => response.text())
         .then(async result => {
           console.log(result)
