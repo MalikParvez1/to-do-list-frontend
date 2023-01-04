@@ -1,6 +1,11 @@
 <template>
+  <a class="weatherwidget-io" href="https://forecast7.com/de/52d5213d40/berlin/" data-label_1="BERLIN" data-label_2="Wetter" data-icons="Climacons Animated" data-days="5" data-theme="original" data-basecolor="#212529" data-cloudfill="#212529" >BERLIN Wetter</a>
   <section class="vh-100">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <div class="container py-5 h-30">
+      <div class="d-grid gap-3 col-6 mx-auto m-5">
+        <a href="ListeErstellen" class="btn btn-info" role="button">Neue To-Dos anlegen</a>
+      </div>
       <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col">
           <div class="card" id="list1" style="border-radius: .75rem; background-color: #eff1f2;">
@@ -9,15 +14,15 @@
               <table class="table mb-4">
                 <thead class="table-light">
                 <tr>
-                  <th scope="col">Status</th>
-                  <th scope="col">Titel</th>
-                  <th scope="col">Beschreibung</th>
-                  <th scope="col">Fälligkeitsdatum</th>
+                  <th scope="col"><i class="bi bi-ui-checks-grid"></i> Status</th>
+                  <th scope="col"><i class="bi bi-justify"></i> Titel</th>
+                  <th scope="col"><i class="bi bi-card-text"></i> Beschreibung</th>
+                  <th scope="col"><i class="bi bi-calendar-x"></i> Fälligkeitsdatum</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr v-for="toDo in toDos" :key="toDo.id">
-                  <td> <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" v-model="status"></td>
+                  <td> <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" v-model="toDo.status"></td>
                   <td>{{toDo.todoTitel}}</td>
                   <td>{{toDo.beschreibung}}</td>
                   <td>{{new Date(toDo.datum).toLocaleDateString()}}</td>
@@ -29,13 +34,21 @@
         </div>
       </div>
     </div>
-    <div class="d-grid gap-3 col-6 mx-auto m-5">
-      <a href="ListeErstellen" class="btn btn-info" role="button">Neue To-Dos anlegen</a>
-    </div>
   </section>
 </template>
 
 <script>
+// eslint-disable-next-line no-unused-expressions
+!(function (d, s, id) {
+  let js
+  const fjs = d.getElementsByTagName(s)[0]
+  if (!d.getElementById(id)) {
+    js = d.createElement(s)
+    js.id = id
+    js.src = 'https://weatherwidget.io/js/widget.min.js'
+    fjs.parentNode.insertBefore(js, fjs)
+  }
+}(document, 'script', 'weatherwidget-io-js'))
 export default {
   name: 'ListeView',
   data: function () {

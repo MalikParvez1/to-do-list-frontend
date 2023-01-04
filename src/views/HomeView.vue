@@ -1,4 +1,6 @@
+<!-- eslint-disable no-unused-expressions -->
 <template>
+  <a class="weatherwidget-io" href="https://forecast7.com/de/52d5213d40/berlin/" data-label_1="BERLIN" data-label_2="Wetter" data-icons="Climacons Animated" data-days="5" data-theme="original" data-basecolor="#212529" data-cloudfill="#212529" >BERLIN Wetter</a>
   <section class="vh-100">
     <div class="p-3 mb-2 bg-dark text-light">
       <div class="home m-5"  style="background-color: #212529">
@@ -27,8 +29,16 @@
 </template>
 
 <script>
-// @ is an alias to /src
+// eslint-disable-next-line no-unused-expressions
+!(function (d, s, id) {
+  let js
+  const fjs = d.getElementsByTagName(s)[0]
+  if (!d.getElementById(id)) {
+    js = d.createElement(s)
+    js.id = id
+    js.src = 'https://weatherwidget.io/js/widget.min.js'
+    fjs.parentNode.insertBefore(js, fjs)
+  }
+}(document, 'script', 'weatherwidget-io-js'))
 
-export default {
-}
 </script>
