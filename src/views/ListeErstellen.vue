@@ -7,8 +7,8 @@
           <div class="card" id="list1" style="border-radius: .75rem; background-color: #eff1f2;">
             <div class="card-body py-4 px-4 px-md-5">
 
-              <p class="h1 text-center mt-3 mb-4 pb-3 text-primary">
-                <u>Todos</u>
+              <p class="h1 text-center mt-2 mb-4 pb-3 text-primary">
+                <u>To-Dos</u>
               </p>
               <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">Aufgabentitel</label>
@@ -24,7 +24,7 @@
                   <label for="formDate"></label>
                    <Datepicker class="form-control" id="minimumView" v-model="date"></Datepicker>
                 </div>
-                    <button type="submit" class="btn btn-success" v-on:click="createToDo">erstellen</button>
+                    <button type="submit" class="btn btn-primary" v-on:click="createToDo">Erstellen</button>
               </div>
             </div>
           </div>
@@ -40,7 +40,8 @@
           <div class="card" id="list1" style="border-radius: .75rem; background-color: #eff1f2;">
             <div class="card-body py-4 px-4 px-md-5">
               <div class=""><th scope="col">Todos insgesamt: {{toDos.length}}
-                <button type="submit" class="btn btn-outline-danger btn-sm ms-3" v-on:click="deleteAllToDos"><i class="bi bi-trash3-fill"></i> alle ToDos löschen</button></th>
+                <a href="ListeView" class="btn btn-outline-primary btn-sm ms-3" role="button">Bereits vorhandene To-Dos</a>
+                <button type="submit" class="btn btn-outline-danger btn-sm ms-3" v-on:click="deleteAllToDos"><i class="bi bi-trash3-fill"></i> Alle ToDos löschen</button></th>
               </div>
               <hr class="my-4">
               <table class="table mb-4">
@@ -58,7 +59,6 @@
                   <td><input class="form-check-input" type="checkbox" v-model="toDo.status" v-on:click="isDone (toDo.id)"></td>
                   <td>{{toDo.todoTitel}}</td>
                   <td>{{toDo.beschreibung}}</td>
-                  <!-- <td><span :style="overDue">{{new Date(toDo.datum).toLocaleDateString()}}</span></td> -->
                   <td><span :style="overDue">{{new Date(toDo.datum).toLocaleDateString()}}</span></td>
                   <td>
                       <button type="submit" class="btn btn-outline-primary btn-sm me-2" v-on:click="updateToDo (toDo.id)"><i class="bi bi-pencil"></i></button>
@@ -88,7 +88,7 @@
 }(document, 'script', 'weatherwidget-io-js'))
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
-  name: 'Seda',
+  name: 'ListeErstellen',
   data () {
     return {
       id: '',
@@ -112,13 +112,6 @@ export default {
         this.toDos.push(toDo)
       }))
       .catch(error => console.log('error', error))
-  },
-  computed: {
-    overDue () {
-      if (new Date().toLocaleString() >= this.datum) { // your handler for overDue check.
-        return 'color:red'
-      } else return 'color:blue'
-    }
   },
   methods: {
     createToDo () {
