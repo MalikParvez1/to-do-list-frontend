@@ -3,6 +3,8 @@ import HomeView from '../views/HomeView.vue'
 import ListeErstellen from '@/views/ListeErstellen'
 import ListeView from '@/views/ListeView'
 import Home from '../views/Home.vue'
+import TestView from '@/views/TestView'
+import Seda from '@/views/Seda'
 
 const routes = [
   {
@@ -24,6 +26,16 @@ const routes = [
     path: '/',
     name: 'helloworld',
     component: Home
+  },
+  {
+    path: '/testComponent',
+    name: 'testComponent',
+    component: TestView
+  },
+  {
+    path: '/seda',
+    name: 'Seda',
+    component: Seda
   }
 ]
 

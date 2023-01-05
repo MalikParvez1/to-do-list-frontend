@@ -11,6 +11,7 @@
       <h6><router-link class="text-white" to="/">Home</router-link></h6>
       <h6><router-link class="text-white" to="/listeErstellen">Liste erstellen</router-link></h6>
       <h6><router-link class="text-white" to="/listeView">Liste</router-link></h6>
+      <h6><router-link class="text-white" to="/seda">Seda</router-link></h6>
     </div>
   </div>
 </template>

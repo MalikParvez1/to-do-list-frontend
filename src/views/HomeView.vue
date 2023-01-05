@@ -3,7 +3,7 @@
   <a class="weatherwidget-io" href="https://forecast7.com/de/52d5213d40/berlin/" data-label_1="BERLIN" data-label_2="Wetter" data-icons="Climacons Animated" data-days="5" data-theme="original" data-basecolor="#212529" data-cloudfill="#212529" >BERLIN Wetter</a>
   <section class="vh-100">
     <div class="p-3 mb-2 bg-dark text-light">
-      <div class="home m-5"  style="background-color: #212529">
+      <div class="home m-5 h-100 d-flex justify-content-center"  style="background-color: #212529">
         <img alt="Vue logo" src="../assets/todo.png">
       </div>
       <div class="m-5">
