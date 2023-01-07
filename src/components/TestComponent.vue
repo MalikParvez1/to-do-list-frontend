@@ -1,4 +1,5 @@
 <template>
+  <Weather></Weather>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
       <div class="container py-5 h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">

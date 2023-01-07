@@ -1,10 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import ListeErstellen from '@/views/ListeErstellen'
-import ListeView from '@/views/ListeView'
-import Home from '../views/Home.vue'
-import TestView from '@/views/TestView'
-import Seda from '@/views/Seda'
+import CreateList from '@/views/CreateList'
+import List from '@/views/List'
 
 const routes = [
   {
@@ -13,29 +10,14 @@ const routes = [
     component: HomeView
   },
   {
-    path: '/listeErstellen',
-    name: 'listeErstellen',
-    component: ListeErstellen
+    path: '/createList',
+    name: 'createList',
+    component: CreateList
   },
   {
-    path: '/listeView',
-    name: 'listeView',
-    component: ListeView
-  },
-  {
-    path: '/',
-    name: 'helloworld',
-    component: Home
-  },
-  {
-    path: '/testComponent',
-    name: 'testComponent',
-    component: TestView
-  },
-  {
-    path: '/seda',
-    name: 'Seda',
-    component: Seda
+    path: '/list',
+    name: 'list',
+    component: List
   }
 ]
 

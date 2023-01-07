@@ -1,5 +1,5 @@
 <template>
-  <a class="weatherwidget-io" href="https://forecast7.com/de/52d5213d40/berlin/" data-label_1="BERLIN" data-label_2="Wetter" data-icons="Climacons Animated" data-days="5" data-theme="original" data-basecolor="#212529" data-cloudfill="#212529" >BERLIN Wetter</a>
+  <Weather></Weather>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <div class="container py-5 h-100">
       <div class="row d-flex justify-content-center align-items-center h-100">
@@ -8,7 +8,7 @@
             <div class="card-body py-4 px-4 px-md-5">
 
               <p class="h1 text-center mt-2 mb-4 pb-3 text-primary">
-                <u>To-Dos</u>
+                <u>TO-DOS</u>
               </p>
               <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">Aufgabentitel</label>
@@ -40,7 +40,7 @@
           <div class="card" id="list1" style="border-radius: .75rem; background-color: #eff1f2;">
             <div class="card-body py-4 px-4 px-md-5">
               <div class=""><th scope="col">Todos insgesamt: {{toDos.length}}
-                <a href="ListeView" class="btn btn-outline-primary btn-sm ms-3" role="button">Bereits vorhandene To-Dos</a>
+                <a href="List" class="btn btn-outline-primary btn-sm ms-3" role="button">Bereits vorhandene To-Dos</a>
                 <button type="submit" class="btn btn-outline-danger btn-sm ms-3" v-on:click="deleteAllToDos"><i class="bi bi-trash3-fill"></i> Alle ToDos löschen</button></th>
               </div>
               <hr class="my-4">
@@ -51,7 +51,7 @@
                   <th scope="col"><i class="bi bi-justify"></i> Titel</th>
                   <th scope="col"><i class="bi bi-card-text"></i> Beschreibung</th>
                   <th scope="col"><i class="bi bi-calendar-x"></i> Fälligkeitsdatum</th>
-                  <th scope="col"><i class="bi bi-pencil"></i> Bearbeiten</th>
+                  <th scope="col"><i class="bi bi-pencil-square"></i> Bearbeiten</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -75,20 +75,13 @@
   </section>
 </template>
 <script>
-// eslint-disable-next-line no-unused-expressions
-!(function (d, s, id) {
-  let js
-  const fjs = d.getElementsByTagName(s)[0]
-  if (!d.getElementById(id)) {
-    js = d.createElement(s)
-    js.id = id
-    js.src = 'https://weatherwidget.io/js/widget.min.js'
-    fjs.parentNode.insertBefore(js, fjs)
-  }
-}(document, 'script', 'weatherwidget-io-js'))
+import Weather from '@/components/Weather'
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
-  name: 'ListeErstellen',
+  name: 'CreateList',
+  components: {
+    Weather
+  },
   data () {
     return {
       id: '',

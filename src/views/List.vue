@@ -1,6 +1,6 @@
 <template>
-  <a class="weatherwidget-io" href="https://forecast7.com/de/52d5213d40/berlin/" data-label_1="BERLIN" data-label_2="Wetter" data-icons="Climacons Animated" data-days="5" data-theme="original" data-basecolor="#212529" data-cloudfill="#212529" >BERLIN Wetter</a>
   <section class="vh-100">
+    <Weather></Weather>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <div class="container py-5 h-30">
       <div class="row d-flex justify-content-center align-items-center">
@@ -10,7 +10,7 @@
               <div class="d-flex justify-content-start align-items-left h-100">
               </div>
               <div class=""><th scope="col">Todos insgesamt: {{toDos.length}}
-                <a href="ListeErstellen" class="btn btn-outline-primary btn-sm ms-3" role="button"><i class="bi bi-list-task"></i> Neue To-Dos anlegen</a>
+                <a href="CreateList" class="btn btn-outline-primary btn-sm ms-3" role="button"><i class="bi bi-list-task"></i> Neue To-Dos anlegen</a>
                 <button type="submit" class="btn btn-outline-danger btn-sm ms-3" v-on:click="deleteAllToDos"><i class="bi bi-trash3-fill"></i> Alle ToDos löschen</button></th>
               </div>
               <hr class="my-4">
@@ -21,7 +21,7 @@
                   <th scope="col"><i class="bi bi-justify"></i> Titel</th>
                   <th scope="col"><i class="bi bi-card-text"></i> Beschreibung</th>
                   <th scope="col"><i class="bi bi-calendar-x"></i> Fälligkeitsdatum</th>
-                  <th scope="col"><i class="bi bi-pencil"></i> Bearbeiten</th>
+                  <th scope="col"><i class="bi bi-pencil-square"></i>Bearbeiten</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -31,7 +31,6 @@
                   <td>{{toDo.beschreibung}}</td>
                   <td>{{new Date(toDo.datum).toLocaleDateString()}}</td>
                   <td>
-                      <button type="submit" class="btn btn-outline-primary btn-sm me-2" v-on:click="updateToDo (toDo.id)"><i class="bi bi-pencil"></i></button>
                       <button type="submit" class="btn btn-outline-danger btn-sm" v-on:click="deleteToDo (toDo.id)"><i class="bi bi-trash3-fill"></i></button>
                   </td>
                 </tr>
@@ -46,19 +45,13 @@
 </template>
 
 <script>
-// eslint-disable-next-line no-unused-expressions
-!(function (d, s, id) {
-  let js
-  const fjs = d.getElementsByTagName(s)[0]
-  if (!d.getElementById(id)) {
-    js = d.createElement(s)
-    js.id = id
-    js.src = 'https://weatherwidget.io/js/widget.min.js'
-    fjs.parentNode.insertBefore(js, fjs)
-  }
-}(document, 'script', 'weatherwidget-io-js'))
+import Weather from '@/components/Weather'
 export default {
-  name: 'ListeView',
+  // eslint-disable-next-line vue/multi-word-component-names
+  name: 'List',
+  components: {
+    Weather
+  },
   data: function () {
     return {
       title: '',
