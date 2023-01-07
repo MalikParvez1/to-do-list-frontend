@@ -58,7 +58,6 @@
                     <td><input class="form-check-input" type="checkbox" v-model="toDo.status" v-on:click="isDone (toDo.id)"></td>
                     <td>{{toDo.todoTitel}}</td>
                     <td>{{toDo.beschreibung}}</td>
-                    <!-- <td><span :style="overDue">{{new Date(toDo.datum).toLocaleDateString()}}</span></td> -->
                     <td><span :style="overDue">{{new Date(toDo.datum).toLocaleDateString()}}</span></td>
                     <td>
                         <button type="submit" class="btn btn-outline-primary btn-sm me-2" v-on:click="updateToDo (toDo.id)"><i class="bi bi-pencil"></i></button>
