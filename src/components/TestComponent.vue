@@ -1,5 +1,4 @@
 <template>
-  <Weather></Weather>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
       <div class="container py-5 h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
@@ -58,7 +57,7 @@
                     <td><input class="form-check-input" type="checkbox" v-model="toDo.status" v-on:click="isDone (toDo.id)"></td>
                     <td>{{toDo.todoTitel}}</td>
                     <td>{{toDo.beschreibung}}</td>
-                    <td><span :style="overDue">{{new Date(toDo.datum).toLocaleDateString()}}</span></td>
+                    <td>{{new Date(toDo.datum).toLocaleDateString()}}</td>
                     <td>
                         <button type="submit" class="btn btn-outline-primary btn-sm me-2" v-on:click="updateToDo (toDo.id)"><i class="bi bi-pencil"></i></button>
                         <button type="submit" class="btn btn-outline-danger btn-sm" v-on:click="deleteToDo (toDo.id)"><i class="bi bi-trash3-fill"></i></button>
@@ -100,13 +99,6 @@ export default {
         this.toDos.push(toDo)
       }))
       .catch(error => console.log('error', error))
-  },
-  computed: {
-    overDue () {
-      if (new Date().toLocaleString() >= this.datum) { // your handler for overDue check.
-        return 'color:red'
-      } else return 'color:blue'
-    }
   },
   methods: {
     createToDo () {
