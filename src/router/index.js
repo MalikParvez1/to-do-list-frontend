@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import CreateList from '@/views/CreateList'
 import List from '@/views/List'
+import TestVi from '@/views/TestVi'
 
 const routes = [
   {
@@ -18,6 +19,11 @@ const routes = [
     path: '/list',
     name: 'list',
     component: List
+  },
+  {
+    path: '/testvi',
+    name: 'testVi',
+    component: TestVi
   }
 ]
 
