@@ -29,3 +29,12 @@ npm run lint
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/)
 
+### Docker image bauen
+```
+docker build -t todo-frontend .
+```
+
+### Docker Container starten
+```
+docker compose up
+```
